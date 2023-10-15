@@ -1,10 +1,13 @@
 import React from 'react';
+import Header from '../../Shared/Header/Header'
+import { Outlet } from 'react-router-dom';
 
 const LoginLayout = () => {
     return (
-        <div>
-            this is login layout
-        </div>
+        <>
+            <Header/>
+            <Outlet/>
+        </>
     );
 };
 
