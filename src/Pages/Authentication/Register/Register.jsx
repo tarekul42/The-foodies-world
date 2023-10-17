@@ -7,13 +7,13 @@ const Register = () => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
     // const location = useLocation();
     // const from = location.state?.from?.pathname || '/places/1';
 
-    
-    const handlePassword = event =>{
+
+    const handlePassword = event => {
         const password = event.target.value;
         // password validation
         setError('')
@@ -21,7 +21,7 @@ const Register = () => {
             setError('Your Password should at least 6 character.');
             return;
         }
-        else if (password === '') {
+        else if (password === ' ') {
             setError('Your password must contain any character or digit.');
             return;
         }
@@ -36,8 +36,9 @@ const Register = () => {
         const form = event.target;
         const username = form.username.value;
         const email = form.email.value;
+        const photo = form.photo.value;
         const password = form.password.value;
-        console.log(username, email, password);
+        console.log(username, email, photo, password);
 
         // create a new user
         createUser(email, password)
@@ -55,6 +56,21 @@ const Register = () => {
                 setSuccess('')
             })
 
+        // update user profile
+        updateUserProfile(username, photo)
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+            // navigate(from, { replace: true })
+            event.target.reset();
+            setSuccess('Your registration in successful');
+            setError('')
+
+        })
+        .catch(error => {
+            setError(error.message);
+            setSuccess('')
+        })
     }
 
 
@@ -87,8 +103,8 @@ const Register = () => {
                         </p>
                         {
                             error ?
-                            <p className='text-red-700'>{error}</p> :
-                            <p className='text-cyan-600'>{success}</p>
+                                <p className='text-red-700'>{error}</p> :
+                                <p className='text-cyan-600'>{success}</p>
                         }
                     </form>
                 </div>
