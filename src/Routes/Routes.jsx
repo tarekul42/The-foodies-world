@@ -43,11 +43,11 @@ const router = createBrowserRouter([
             },
             {
                 path: 'chefs',
-                element: <Chefs/>
+                element: <ChefProvider><Chefs/></ChefProvider>
             },
             {
                 path: 'recipes',
-                element: <Recipes/>
+                element: <ChefProvider><Recipes/></ChefProvider>
             },
             {
                 path: 'profile',
