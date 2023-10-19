@@ -8,16 +8,17 @@ import Register from "../Pages/Authentication/Register/Register";
 import Profile from "../Pages/Profile/Profile";
 import Chefs from "../Pages/Home/Chefs/Chefs/Chefs";
 import Recipes from "../Pages/Home/Recipes/Recipes/Recipes";
+import ChefProvider from "../Providers/ChefProvider";
 
 const router = createBrowserRouter([
     /* {
         path: '/',
         element: <LoginLayout />,
         children: [
-            // {
-            //     path: '/',
-            //     element: <Navigate to='/places/1' />
-            // },
+            {
+                path: '/',
+                element: <Navigate to='/places/1' />
+            },
             {
                 path: '/',
                 element: <Login />
@@ -31,11 +32,10 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout/>,
-        loader: () => fetch('http://localhost:5000/chefs'),
         children:[
             {
                 path: '/',
-                element: <Home/>
+                element: <ChefProvider><Home/></ChefProvider>
             },
             {
                 path: 'blog',
