@@ -31,6 +31,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout/>,
+        loader: () => fetch('http://localhost:5000/chefs'),
         children:[
             {
                 path: '/',
